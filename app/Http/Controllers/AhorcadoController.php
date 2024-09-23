@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cache;
 
 class AhorcadoController extends Controller
 {
-    private $palabras = ['pepe', 'elniñobrasileñojugandofutbchibolenelvientredesumadrejaja', 'kevinglezanc', 'ahorcado'];
+    private $palabras = ['richito', 'elniñobrasileñojugandofutchibolenelvientredesumadrejaja', 'danielitopro', 'ahorcado', 'igmar'];
 
     public function iniciarJuego()
     {
@@ -42,9 +42,10 @@ class AhorcadoController extends Controller
         if (!$estadoJuego) {
             return response()->json(['error' => 'Juego no encontrado'], 404);
         }
-
         $request->validate([
             'letra' => 'required|alpha|size:1'
+        ], [
+            'letra.size' => 'Debe introducir solo una letra'
         ]);
 
         $letra = strtolower($request->input('letra'));
