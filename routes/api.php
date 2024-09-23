@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\TableController;
+use App\Http\Controllers\AhorcadoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('tablitas/{value1}/{value2?}/{fibonacci?}', [TableController::class, 'index'])
-    ->where('value1', '[0-9]+')
-    ->where('value2', '[0-9]+')
-    ->where('fibonacci', 'fibonacci');
+Route::get('ahorcado/start/{word}', [AhorcadoController::class, 'start'])
+    ->where('word', '[A-Za-z]+');
+
+Route::post('ahorcado/guess', [AhorcadoController::class, 'guess']);
+
+Route::get('ahorcado/status', [AhorcadoController::class, 'status']);
