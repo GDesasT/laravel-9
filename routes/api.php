@@ -19,9 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('ahorcado/start/{word}', [AhorcadoController::class, 'start'])
-    ->where('word', '[A-Za-z]+');
-
-Route::post('ahorcado/guess', [AhorcadoController::class, 'guess']);
-
-Route::get('ahorcado/status', [AhorcadoController::class, 'status']);
+Route::post('/juego', [AhorcadoController::class, 'iniciarJuego']);
+Route::post('/juego/{id}/intento', [AhorcadoController::class, 'hacerIntento']);
+Route::get('/juego/{id}', [AhorcadoController::class, 'obtenerEstado']);
